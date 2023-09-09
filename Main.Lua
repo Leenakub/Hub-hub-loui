@@ -937,52 +937,63 @@ function main:Slider(text, min, max, set, callback)
     local mouse = game.Players.LocalPlayer:GetMouse()
     local uis = game:GetService("UserInputService")
 
-    local Value = set
 
-    local moveconnection
-    local releaseconnection
+			local mouse = game.Players.LocalPlayer:GetMouse()
+			local uis = game:GetService("UserInputService")
 
-    AHEHE.MouseButton1Down:Connect(function()
-        Value = math.floor((((tonumber(max) - tonumber(min)) / 347) * bar1.AbsoluteSize.X) + tonumber(min)) or 0
-        pcall(function()
-            callback(Value)
-        end)
-    end)
+			if Value == nil then
+				Value = set
+				pcall(function()
+					callback(Value)
+				end)
+			end
+			
+			AHEHE.MouseButton1Down:Connect(function()
+				Value = math.floor((((tonumber(max) - tonumber(min)) / 347) * bar1.AbsoluteSize.X) + tonumber(min)) or 0
+				pcall(function()
+					callback(Value)
+				end)
+				bar1.Size = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X, 0, 347), 0, 5)
+				circlebar.Position = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X - 2, 0, 438), 0, -3)
+				moveconnection = mouse.Move:Connect(function()
+					TextBox.Text = Value
+					Value = math.floor((((tonumber(max) - tonumber(min)) / 347) * bar1.AbsoluteSize.X) + tonumber(min))
+					pcall(function()
+						callback(Value)
+					end)
+					bar1.Size = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X, 0, 347), 0, 5)
+					circlebar.Position = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X - 2, 0, 347), 0, -3)
+				end)
+				releaseconnection = uis.InputEnded:Connect(function(Mouse)
+					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+						Value = math.floor((((tonumber(max) - tonumber(min)) / 448) * bar1.AbsoluteSize.X) + tonumber(min))
+						pcall(function()
+							callback(Value)
+						end)
+						bar1.Size = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X, 0, 347), 0, 5)
+						circlebar.Position = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X - 2, 0, 438), 0, -3)
+						moveconnection:Disconnect()
+						releaseconnection:Disconnect()
+					end
+				end)
+			end)
+			releaseconnection = uis.InputEnded:Connect(function(Mouse)
+				if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+					Value = math.floor((((tonumber(max) - tonumber(min)) / 347) * bar1.AbsoluteSize.X) + tonumber(min))
+					TextBox.Text = Value
+				end
+			end)
 
-    moveconnection = mouse.Move:Connect(function()
-        TextBox.Text = Value
-        Value = math.floor((((tonumber(max) - tonumber(min)) / 347) * bar1.AbsoluteSize.X) + tonumber(min))
-        pcall(function()
-            callback(Value)
-        end)
-        bar1.Size = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X, 0, 347), 0, 5)
-        circlebar.Position = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X - 2, 0, 347), 0, -3)
-    end)
-
-    releaseconnection = uis.InputEnded:Connect(function(Mouse)
-        if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-            Value = math.floor((((tonumber(max) - tonumber(min)) / 347) * bar1.AbsoluteSize.X) + tonumber(min))
-            pcall(function()
-                callback(Value)
-            end)
-
-            bar1.Size = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X, 0, 347), 0, 5)
-            circlebar.Position = UDim2.new(0, math.clamp(mouse.X - bar1.AbsolutePosition.X - 2, 0, 347), 0, -3)
-            moveconnection:Disconnect()
-            releaseconnection:Disconnect()
-        end
-    end)
-
-    TextBox.FocusLost:Connect(function()
-        if tonumber(TextBox.Text) > max then
-            TextBox.Text = max
-        end
-        bar1.Size = UDim2.new((TextBox.Text or 0) / max, 0, 0, 5)
-        circlebar.Position = UDim2.new(1, -2, 0, -3)
-        TextBox.Text = tostring(TextBox.Text and math.floor((TextBox.Text / max) * (max - min) + min))
-        pcall(callback, TextBox.Text)
-    end)
-end
+			TextBox.FocusLost:Connect(function()
+				if tonumber(TextBox.Text) > max then
+					TextBox.Text  = max
+				end
+				bar1.Size = UDim2.new((TextBox.Text or 0) / max, 0, 0, 5)
+				circlebar.Position = UDim2.new(1, -2, 0, -3)
+				TextBox.Text = tostring(TextBox.Text and math.floor( (TextBox.Text / max) * (max - min) + min) )
+				pcall(callback, TextBox.Text)
+			end)
+		end
 
     
 		function main:Textbox(text,disappear,callback)
