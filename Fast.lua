@@ -33,7 +33,7 @@ end)
             local Client = game:GetService("Players").LocalPlayer
             local DMG = require(Client.PlayerScripts.CombatFramework.Particle.Damage)
             
-            function SeraphFuckWeapon() 
+            function Weapon() 
                 local p13 = SeraphFrame.activeController
                 local wea = p13.blades[1]
                 if not wea then return end
@@ -86,13 +86,13 @@ end)
             
             function Boost()
                 spawn(function()
-                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(SeraphFuckWeapon()))
+                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(Weapon()))
                 end)
             end
             
             function Unboost()
                 spawn(function()
-                    game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("unequipWeapon",tostring(SeraphFuckWeapon()))
+                    game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("unequipWeapon",tostring(Weapon()))
                 end)
             end
             
@@ -247,7 +247,7 @@ end)
                         end
                     end
                 end
-             end
+             end)
             
             b = tick()
             spawn(function()
@@ -290,7 +290,24 @@ end)
                     end
                 end
             end)
-            
+
+            spawn(function()
+                while wait(.445) do
+                    if  _G.FastAttackNormalSpeed then
+                        pcall(function()
+                            for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                if v.Humanoid.Health > 0 then
+                                    if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+					game:GetService'VirtualUser':CaptureController()
+					game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                   end
+                                end
+                            end
+                        end)
+                    end
+                end
+            end)
+	
             tjw1 = true
             task.spawn(
                 function()
@@ -328,7 +345,6 @@ end)
             function AttackFunction()
 	local ac = CombatFrameworkR.activeController
 	if ac and ac.equipped then
-		for indexincrement = 1, 1 do
 			local bladehit = getAllBladeHits(60)
 			if #bladehit > 0 then
 				local AcAttack8 = debug.getupvalue(ac.attack, 5)
@@ -351,14 +367,13 @@ end)
 					v:Play(1.001, 1.0002, 1.005)
 				end                 
 				if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and ac.blades and ac.blades[1] then 
-					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(CurrentWeapon()))
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(Weapon()))
 					game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
 					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, 2, "") 
 				end
 			end
 		end
-	end
-end
+  end
             
             local Client = game.Players.LocalPlayer
             local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
