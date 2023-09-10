@@ -1,8 +1,7 @@
 _G.FastAttackNormalSpeed = true
 
-require(game.ReplicatedStorage.Util.CameraShaker):Stop()
-
-xShadowFastAttackx = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+UtilCameraShaker:Stop()
+DMG:Stop()
 
 xShadowx = debug.getupvalues(xShadowFastAttackx)[2]
 
@@ -21,16 +20,14 @@ spawn(function()
                     xShadowx.activeController.blocking = false
                     xShadowx.activeController.attacking = false
                     xShadowx.activeController.humanoid.AutoRotate = 50
-                    game:GetService'VirtualUser':CaptureController()
-					game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                 end)
             end
         end
     end)
 end)
 
-
-local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
+            local UtilCameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+            local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
             local VirtualUser = game:GetService('VirtualUser')
             local RigControllerR = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.RigController))[2]
             local Client = game:GetService("Players").LocalPlayer
@@ -65,18 +62,18 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                 return Hits
             end
             
-            task.spawn(
-                function()
+            task.spawn(function()
                 while wait(0) do
                     if  _G.FastAttackNormalSpeed then
                         if SeraphFrame.activeController then
                             if v.Humanoid.Health > 0 then
                               SeraphFrame.activeController.attacking = false
-                                SeraphFrame.activeController.timeToNextBlock = 0
+                              SeraphFrame.activeController.timeToNextBlock = 0
                                SeraphFrame.activeController.humanoid.AutoRotate = true
                                SeraphFrame.activeController.increment = 3
                                SeraphFrame.activeController.blocking = false
-                               SeraphFrame.activeController.hitboxMagnitude = 150
+                               SeraphFrame.activeController.hitboxMagnitude = 90
+				SeraphFrame.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
                                 SeraphFrame.activeController.timeToNextAttack = 0
                                 SeraphFrame.activeController.focusStart = 0
                                 SeraphFrame.activeController.humanoid.AutoRotate = true
@@ -112,7 +109,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                             cdnormal = tick()
                         else
                              Animation.AnimationId = ac.anims.basic[2]
-                            ac.humanoid:LoadAnimation(Animation):Play(100, 99) --à¸—à¹ˆà¸²à¹„à¸¡à¹ˆà¸—à¸³à¸‡à¸²à¸™à¹à¸à¹‰à¹€à¸›à¹‡à¸™ (1,1)
+                            ac.humanoid:LoadAnimation(Animation):Play(1.0002, 1.2001)
                             game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(120), 2, "")
                         end
                     end)
@@ -121,7 +118,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
             
             b = tick()
             spawn(function()
-                while wait(0) do
+                while wait(0.0054) do
                     if  _G.FastAttackNormalSpeed then
                         if b - tick() > 0.75 then
                             wait(.2)
@@ -132,7 +129,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 40 then
                                         Attack()
-                                        wait(0)
+                                        wait(0.)
                                         Boost()
                                     end
                                 end
@@ -144,17 +141,17 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
             
             k = tick()
             spawn(function()
-                while wait(0) do
+                while wait(0.00025) do
                     if  _G.FastAttackNormalSpeed then
                         if k - tick() > 0.75 then
-                            wait(0)
+                            wait(0.005)
                             k = tick()
                         end
                         pcall(function()
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 40 then
-                                    wait(0)
+                                    wait(0.)
                                     Unboost()
                                     end
                                 end
@@ -197,11 +194,6 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                 end
             )
             
-            
-            
-            local CameRa = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.CameraShaker)
-            CameRa.CameraShakeInstance.CameraShakeState = {FadingIn = 3,FadingOut = 2,Sustained = 0,Inactive =1}
-            
             local Client = game.Players.LocalPlayer
             local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
             local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
@@ -222,7 +214,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                                 if Hits then
                                     if  _G.FastAttackNormalSpeed then
                                         STOP.play = function() end
-                                        a:Play(20.1,15.1,10.1)
+                                        a:Play(1.1, 1.012,1.1)
                                         func(Hits)
                                         STOP.play = shared.cpc
                                         wait(a.length * .0)
@@ -240,12 +232,12 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                 end)
                 end)
             
-            task.spawn(
-                function()
+            task.spawn(function()
                 while wait() do
                     if  _G.FastAttackNormalSpeed then
                         if SeraphFrame.activeController then
                             if v.Humanoid.Health > 0 then
+			        SeraphFrame.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
                                 SeraphFrame.activeController.timeToNextAttack = 2
                                 SeraphFrame.activeController.focusStart = 0
                                 SeraphFrame.activeController.hitboxMagnitude = 60
@@ -259,7 +251,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
             
             b = tick()
             spawn(function()
-                while wait() do
+                while wait(0.00415) do
                     if _G.FastAttackNormalSpeed then
                         if b - tick() > 9e9 then
                             b = tick()
@@ -281,7 +273,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
             
             k = tick()
             spawn(function()
-                while wait() do
+                while wait(.445) do
                     if  _G.FastAttackNormalSpeed then
                         if k - tick() > 9e9 then
                             k = tick()
@@ -319,7 +311,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
                                     if i then
                                         b.play = function()
                                         end
-                                        d:Play(25.25, 20.25, 23)
+                                        d:Play(1.005, 1.0002, 1.0003)
                                         h(i)
                                         b.play = shared.cpc
                                         wait(9e9)
@@ -356,7 +348,7 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
 				debug.setupvalue(ac.attack, 4, AcAttack7)
 				debug.setupvalue(ac.attack, 7, AcAttack10)
 				for k, v in pairs(ac.animator.anims.basic) do
-					v:Play(20,10.01,10)
+					v:Play(1.001, 1.0002, 1.005)
 				end                 
 				if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and ac.blades and ac.blades[1] then 
 					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(CurrentWeapon()))
@@ -388,7 +380,7 @@ end
                                 if Hits then
                                     if  _G.FastAttackNormalSpeed then
                                         STOP.play = function() end
-                                        a:Play(21,29,30)
+                                        a:Play(1, 1, 1)
                                         func(Hits)
                                         STOP.play = shared.cpc
                                         wait(a.length * 0)
