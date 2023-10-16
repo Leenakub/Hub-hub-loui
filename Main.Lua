@@ -2321,7 +2321,7 @@ Main3:Toggle("ตีเร็ว",true,function(value)
 _G.F = value
 end)
 
-local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
+            local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
             local VirtualUser = game:GetService('VirtualUser')
             local RigControllerR = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.RigController))[2]
             local Client = game:GetService("Players").LocalPlayer
@@ -2330,9 +2330,14 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
             function Weapon() 
                 local p13 = SeraphFrame.activeController
                 local wea = p13.blades[1]
-                if not wea then return end
-                while wea.Parent~=game.Players.LocalPlayer.Character do wea=wea.Parent
-                   end
+                if not wea then
+                   return
+                end
+                while wea.Parent~=game.Players.LocalPlayer.Character do 
+                    pcall(function()
+                wea=wea.Parent
+                    end)
+                end
                 return wea
             end
             
@@ -2340,8 +2345,8 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
 
             function getHits(Size)
                 local Hits = {}
-                local Enemies =  workspace.Enemies:GetChildren()
-                local Characters = workspace.Characters:GetChildren()
+                local Enemies =  game.Workspace.Enemies:GetChildren()
+                local Characters = game.Workspace.Characters:GetChildren()
                 for i=1,#Enemies do local v = Enemies[i]
                     local Human = v:FindFirstChildOfClass("Humanoid")
                     if Human and Human.RootPart and Human.Health > 0 and game.Players.LocalPlayer:DistanceFromCharacter(Human.RootPart.Position) < Size+55 then
@@ -2393,31 +2398,6 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
       end)
     end
 end
-
-                    task.spawn(
-                        function()
-                        if tick() - cdnormal > 9e9 then
-                            ac:attack()
-                            cdnormal = tick()
-    else
-
-ac.humanoid:LoadAnimation(Animation):Play(0.001 , 0.001)
-                            game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(120), 2, "")
-
-    end
-  end)
-
-                    task.spawn(function()
-                        if tick() - cdnormal > 9e9 then
-                            ac:attack()
-                            cdnormal = tick()
-    else
-
-ac.humanoid:LoadAnimation(Animation):Play(0.1 , 0.23101)
-                            game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(120), 1, "")
-
-    end
-  end)
 
             gg = true
             task.spawn(
