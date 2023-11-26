@@ -1173,25 +1173,25 @@ if game.PlaceId == 2753915549 then
         Level = game:GetService("Players").LocalPlayer.Data.Level.Value
         if W then
             if Level == 1 or Level <= 14 then
-                Mon = "Bandit [Lv. 5]"
+                Mon = "Bandit"
                 LQuest = 1
                 NQuest = "BanditQuest1"
                 NameMon = "Bandit"
                 CFrameQuest = CFrame.new(1059.37195, 15.4495068, 1550.4231, 0.939700544, -0, -0.341998369, 0, 1, -0, 0.341998369, 0, 0.939700544)
             elseif Level == 15 or Level <= 29 then
-                Mon = "Gorilla [Lv. 20]"
+                Mon = "Gorilla"
                 LQuest = 2
                 NQuest = "JungleQuest"
                 NameMon = "Gorilla"
                 CFrameQuest = CFrame.new(-1333.353271484375, 18.6214656829834, -378.64617919921875)
             elseif Level == 30 or Level <= 39 then
-                Mon = "Pirate [Lv. 35]"
+                Mon = "Pirate"
                 LQuest = 1
                 NQuest = "BuggyQuest1"
                 NameMon = "Pirate"
                 CFrameQuest = CFrame.new(-1141.07483, 4.10001802, 3831.5498, 0.965929627, -0, -0.258804798, 0, 1, -0, 0.258804798, 0, 0.965929627)
             elseif Level == 40 or Level <= 59 then
-                Mon = "Brute [Lv. 45]"
+                Mon = "Brute"
                 LQuest = 2
                 NQuest = "BuggyQuest1"
                 NameMon = "Brute"
@@ -2320,10 +2320,6 @@ Main3:Seperator("ตีเร็วแบบพ่อมึงตายเลย
 Main3:Toggle("ตีเร็ว",true,function(value)
 _G.FastAttackNormalSpeed = value
 end)
-local E = Enemies
-local P = Characters
-
-local Type = E --E,P
 
 require(game.ReplicatedStorage.Util.CameraShaker):Stop()
 
@@ -2446,12 +2442,10 @@ ac.humanoid:LoadAnimation(Animation):Play(1, 1)
                 while wait(0) do
                     if  _G.FastAttackNormalSpeed then
                         pcall(function()
-                            for i, v in pairs(game.Workspace.Type:GetChildren()) do
+                            for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-
-game:GetService'VirtualUser':CaptureController()
-                  game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+C()
                                     end
                                 end
                             end
@@ -2559,7 +2553,7 @@ game:GetService'VirtualUser':CaptureController()
                             a = tick()
                         end
                         pcall(function()
-                            for i, v in pairs(game.Workspace.Type:GetChildren()) do
+                            for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
                                     wait(0.125)
@@ -2582,7 +2576,7 @@ game:GetService'VirtualUser':CaptureController()
                             b = tick()
                         end
                         pcall(function()
-                            for i, v in pairs(game.Workspace.Type:GetChildren()) do
+                            for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then 
                                      wait(0.125)
@@ -2603,7 +2597,7 @@ game:GetService'VirtualUser':CaptureController()
                             k = tick()
                         end
                         pcall(function()
-                            for i, v in pairs(game.Workspace.Type:GetChildren()) do
+                            for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 50 then
                                     wait(0.125)
