@@ -1221,7 +1221,7 @@ if game.PlaceId == 2753915549 then
                 NameMon = "Snowman"
                 CFrameQuest = CFrame.new(1389.74451, 88.1519318, -1298.90796, -0.342042685, 0, 0.939684391, 0, 1, 0, -0.939684391, 0, -0.342042685)
             elseif Level == 120 or Level <= 149 then
-                Mon = "Chief Petty Office"
+                Mon = "Chief Petty Officer"
                 LQuest = 1
                 NQuest = "MarineQuest2"
                 NameMon = "Chief Petty Officer"
