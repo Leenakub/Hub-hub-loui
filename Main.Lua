@@ -1197,31 +1197,31 @@ if game.PlaceId == 2753915549 then
                 NameMon = "Brute"
                 CFrameQuest = CFrame.new(-1141.07483, 4.10001802, 3831.5498, 0.965929627, -0, -0.258804798, 0, 1, -0, 0.258804798, 0, 0.965929627)
             elseif Level == 60 or Level <= 74 then
-                Mon = "Desert Bandit [Lv. 60]"
+                Mon = "Desert Bandit"
                 LQuest = 1
                 NQuest = "DesertQuest"
                 NameMon = "Desert Bandit"
                 CFrameQuest = CFrame.new(894.488647, 5.14000702, 4392.43359, 0.819155693, -0, -0.573571265, 0, 1, -0, 0.573571265, 0, 0.819155693)
             elseif Level == 75 or Level <= 89 then
-                Mon = "Desert Officer [Lv. 70]"
+                Mon = "Desert Officer"
                 LQuest = 2
                 NQuest = "DesertQuest"
                 NameMon = "Desert Officer"
                 CFrameQuest = CFrame.new(1608.2535400390625, 8.564772605895996, 4371.8779296875)
             elseif Level == 90 or Level <= 99 then
-                Mon = "Snow Bandit [Lv. 90]"
+                Mon = "Snow Bandit"
                 LQuest = 1
                 NQuest = "SnowQuest"
                 NameMon = "Snow Bandit"
                 CFrameQuest = CFrame.new(1389.74451, 88.1519318, -1298.90796, -0.342042685, 0, 0.939684391, 0, 1, 0, -0.939684391, 0, -0.342042685)
             elseif Level == 100 or Level <= 119 then
-                Mon = "Snowman [Lv. 100]"
+                Mon = "Snowman"
                 LQuest = 2
                 NQuest = "SnowQuest"
                 NameMon = "Snowman"
                 CFrameQuest = CFrame.new(1389.74451, 88.1519318, -1298.90796, -0.342042685, 0, 0.939684391, 0, 1, 0, -0.939684391, 0, -0.342042685)
             elseif Level == 120 or Level <= 149 then
-                Mon = "Chief Petty Officer [Lv. 120]"
+                Mon = "Chief Petty Office"
                 LQuest = 1
                 NQuest = "MarineQuest2"
                 NameMon = "Chief Petty Officer"
