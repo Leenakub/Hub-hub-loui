@@ -79,7 +79,10 @@ wait(0.6)
 
 
 wait(0.2)
-Notification.new("\n<Color=Yellow>เวอร์ชัน<Color=Green>1.0<Color=/><Color=/>\n"):Display()
+Notification.new(" \n"):Display()
+wait(0)
+
+Notification.new("\n<Color=Yellow>เวอร์ชัน<Color=Green>1.0<Color=/><Color=/>"):Display()
 
 wait()
 
@@ -4723,10 +4726,8 @@ wait(0.00535)
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
-                                for indexincrement = 1280, 840 do
                   game:GetService('VirtualUser'):CaptureController()
-                  game:GetService('VirtualUser'):Button1Down(Vector2.new(indexincrement))
-end
+                  game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 480))
                                     end
                                 end
                             end
