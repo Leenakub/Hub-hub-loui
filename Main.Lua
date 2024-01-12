@@ -1,144 +1,66 @@
-
-
 local Notification = require(game:GetService("ReplicatedStorage").Notification)
 
 xwd = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
-
 Gamename = xwd.Name
 
 local games = {
-
    [game.PlaceId] = {
-
       Title = "Blox Fruits",
-
       Icons = "",
-
       Welcome = function()
-
-            return tostring(
-
-              " \n"
-                   ..
-                        Gamename.. "!" .. " เกไม ]"  .."\n Loadded..."
-
-            )
-
-      end
-
-   }
-
-}
+            return tostring(" \n"..Gamename.. "!" .. " เกไม ]"  .."\n Loadded...") end }}
 
 if games[game.PlaceId] then
-
     if games[game.PlaceId].Title == "Blox Fruits" then
-
       local function notify(types, ...)
-
-            if types == "Notify" then
-
-               require(game.ReplicatedStorage.Notification).new(...):Display()
-
+            if types == "Notify" then  require(game.ReplicatedStorage.Notification).new(...):Display()
             end
-
       end
-
       notify("Notify", games[game.PlaceId].Welcome())
-
    end
-
 end
-
-
 
 wait(0.6)
 
-
-
-    game.StarterGui:SetCore("SendNotification", {
-
-
-
-      Title = "เปิดโปร", 
-
-
-
-      Text = "ของจิงครับของจิง",
-
-
-
-      Icon = "http://www.roblox.com/asset/?id=10240321390",
-
-      Duration = 1
-
-
-
-    })
-
-
+    game.StarterGui:SetCore("SendNotification", {Title = "เปิดโปร",Text = "ของจิงครับของจิง",Icon = "http://www.roblox.com/asset/?id=10240321390",Duration = 1})
 
 wait(0.2)
-Notification.new(" \n"):Display()
+
+Notification.new(" \n" ):Display()
+
 wait(0)
 
-Notification.new("\n<Color=Yellow>เวอร์ชัน<Color=Green>1.0<Color=/><Color=/>"):Display()
+Notification.new("\n<Color=Yellow>เวอร์ชัน<Color=Green>2.6<Color=/><Color=/>"):Display()
 
 wait()
 
-
-
 local ScreenGui = Instance.new("ScreenGui")
-
 local ImageButton = Instance.new("ImageButton")
-
 local UICorner = Instance.new("UICorner")
 
-
-
 ScreenGui.Parent = game.CoreGui
-
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-
-
-
-
 ImageButton.Parent = ScreenGui
-
 ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-
 ImageButton.BorderSizePixel = 0
-
 ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-
 ImageButton.Size = UDim2.new(0, 50, 0, 50)
-
 ImageButton.Draggable = true
-
 ImageButton.Image = "http://www.roblox.com/asset/?id=10063029955"
+ImageButton.Name = "ImageButton"
 
-
+do local ImageButton1 = game.CoreGui:FindFirstChild("ImageButton");if ImageButton1 then ImageButton1:Destroy();end;end;
 
 ImageButton.MouseButton1Down:connect(function()
-
 game.CoreGui:FindFirstChild("Ui").Enabled = not game.CoreGui:FindFirstChild("Ui").Enabled
-
 end)
 
 --9849581539
-
----rbxassetid://10063029955
-
+--rbxassetid://10063029955
 --game.CoreGui:FindFirstChild("Ui").Enabled = not game.CoreGui:FindFirstChild("Ui").Enabled
 
-
-
-
-
 UICorner.Parent = ImageButton
-
-
 
 do local GUI = game.CoreGui:FindFirstChild("Ui");if GUI then GUI:Destroy();end;if _G.Color == nil then
 
@@ -4033,10 +3955,9 @@ end)
 
 
 
-    local SelectWeapona = Main3:Dropdown("เลือกของ",WeaponList,function(value)
+    local SelectWeapona = Main3:Dropdown("เลือกของ",{"Combat","Sword"},WeaponList,function(value)
 
-        "Combat",
-        "Sword"
+        _G.SelectWeapon = value
 
     end)
 
@@ -4341,7 +4262,7 @@ spawn(function()
                 pcall(function()
                     Fastx.activeController.timeToNextAttack = 0
                     Fastx.activeController.hitboxMagnitude = 60
-                
+
                     Fastx.activeController.active = false
                     Fastx.activeController.timeToNextBlock = 0
                     Fastx.activeController.focusStart = 0
@@ -4477,7 +4398,7 @@ game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
             b = tick()
             spawn(function()
                 while wait() do
-                    if _G.FastAttackNormalSpeed then
+                    if _G.FastAyttackNormalSpeed then
                         if b - tick() > 9e9 then
                             b = tick()
                         end
@@ -6575,15 +6496,15 @@ end
 
         pcall(function()
 
-            while wait(10) do
+            while wait() do
 
-                                if game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
+                                if game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen") then
 
             Buddy:Set("Buddy : 🟢")
 
                                     else
 
-                      if not game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
+                      if not game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen") then
 
             Buddy:Set("Buddy : 🔴")
 
@@ -6627,11 +6548,11 @@ end
 
                 pcall(function()
 
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Cake Queen") then
 
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 
-                            if v.Name == "Cake Queen [Lv. 2175] [Boss]" then
+                            if v.Name == "Cake Queen" then
 
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 
@@ -6661,9 +6582,9 @@ end
 
                     else
 
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
+                        if game:GetService("ReplicatedStorage"):FindFirstChild("Cake Queen") then
 
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Queen [Lv. 2175] [Boss]").HumanoidRootPart.CFrame * CFrame.new(0,0,30))
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Cake Queen").HumanoidRootPart.CFrame * CFrame.new(0,0,30))
 
                         else
 
@@ -6699,15 +6620,15 @@ end
 
         pcall(function()
 
-            while wait(10) do
+            while wait() do
 
-                                if game:GetService("Workspace").Enemies:FindFirstChild("Order [Lv. 1250] [Raid Boss]") then
+                                if game:GetService("Workspace").Enemies:FindFirstChild("Order") then
 
             Oder:Set("Oder : 🟢")
 
                                     else
 
-                      if not game:GetService("Workspace").Enemies:FindFirstChild("Order [Lv. 1250] [Raid Boss]") then
+                      if not game:GetService("Workspace").Enemies:FindFirstChild("Order") then
 
             Oder:Set("Oder : 🔴")
 
@@ -6751,11 +6672,11 @@ end
 
                 pcall(function()
 
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Order [Lv. 1250] [Raid Boss]") then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Order") then
 
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 
-                            if v.Name == "Order [Lv. 1250] [Raid Boss]" then
+                            if v.Name == "Order" then
 
                                 if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 
@@ -6789,9 +6710,9 @@ end
 
                     else
 
-                        if game:GetService("ReplicatedStorage"):FindFirstChild("Order [Lv. 1250] [Raid Boss]") then
+                        if game:GetService("ReplicatedStorage"):FindFirstChild("Order") then
 
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Order [Lv. 1250] [Raid Boss]").HumanoidRootPart.CFrame * CFrame.new(0,0,30))
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild("Order").HumanoidRootPart.CFrame * CFrame.new(0,0,30))
 
                         else
 
@@ -6935,7 +6856,7 @@ end)
 
                         end
 
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
 
                         if string.find(QuestTitle,"Diablo") or string.find(QuestTitle,"Deandre") or string.find(QuestTitle,"Urban") then
 
@@ -6967,9 +6888,11 @@ end)
 
                                             until _G.AutoElitehunter == false or v.Humanoid.Health <= 0 or not v.Parent
 
-                                    end
+                      end
 
-                                end
+                    end
+
+                  end
 
                             else
 
@@ -7089,7 +7012,7 @@ end)
 
                 pcall(function()
 
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper") then
 
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 
@@ -7339,7 +7262,7 @@ topos(v.HumanoidRootPart.CFrame * CFrame.new(0,-30,0))
 
             while wait(.1) do
 
-                if (_G.AutoFarmSwanGlasses and _G.AutoFarmSwanGlasses_Hop) and W2 and not game:GetService("ReplicatedStorage"):FindFirstChild("Don Swan [Lv. 1000] [Boss]") and not game:GetService("Workspace").Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
+                if (_G.AutoFarmSwanGlasses and _G.AutoFarmSwanGlasses_Hop) and W2 and not game:GetService("ReplicatedStorage"):FindFirstChild("Don Swan") and not game:GetService("Workspace").Enemies:FindFirstChild("Don Swan") then
 
                     Hop()
 
@@ -7524,51 +7447,25 @@ topos(v.HumanoidRootPart.CFrame * CFrame.new(0,10,20))
 
 
         Main:Button("Checking Bone", function()
-
-    game.StarterGui:SetCore("SendNotification", {
-
-        Title = "Checking Bone", 
-
-        Text = ("Your Bone : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))
-
-    })
-
-    wait(1)
-
+    game.StarterGui:SetCore("SendNotification",{Title = "Checking Bone",Text = ("Your Bone : "..(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")))}) wait(1)
 end)
-
-
-
-
 
     Main:Seperator("Observation")
 
-
-
     local ObservationRange = Main:Label("")
 
-
-
     spawn(function()
-
         while wait() do
-
             pcall(function()
-
                 ObservationRange:Set("Observation Range Level : "..math.floor(game:GetService("Players").LocalPlayer.VisionRadius.Value))
-
             end)
-
         end
-
     end)
 
 
 
     Main:Toggle("Auto Farm Observation",_G.AutoObservation,function(value)
-
         _G.AutoObservation = value
-
         StopTween(_G.AutoObservation)
 
     end)
@@ -7588,12 +7485,12 @@ end)
                         if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
 
                             game:GetService('VirtualUser'):CaptureController()
-
-                            game:GetService('VirtualUser'):SetKeyDown('0x65')
+game:GetService('VirtualUser'):SetKeyDown('0x65')
 
                             wait(2)
 
-                            game:GetService('VirtualUser'):SetKeyUp('0x65')
+                  game:GetService('VirtualUser'):CaptureController()
+game:GetService('VirtualUser'):SetKeyUp('0x65')
 
                         end
 
@@ -7627,29 +7524,15 @@ end)
 
                     if game:GetService("Players").LocalPlayer.VisionRadius.Value >= 3000 then
 
-                        game:GetService("StarterGui"):SetCore("SendNotification", {
-
-                            Icon = "rbxassetid://0";
-
-                            Title = "Observation", 
-
-                            Text = "You Have Max Points"
-
-                        })
-
+                        game:GetService("StarterGui"):SetCore("SendNotification", {Icon = "rbxassetid://0",Title = "Observation",Text = "You Have Max Point"})
                         wait(2)
-
                     else
-
                         if W2 then
-
                             if game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate") then
-
                                 if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
-
                                     repeat task.wait()
-
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(3,50,0)
+                        
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(3,50,0)
 
                                     until _G.AutoObservation == false or not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
 
@@ -13550,7 +13433,6 @@ wait(0)
 
 
 --
-
 
 
 
