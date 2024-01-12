@@ -4726,8 +4726,10 @@ wait(0.00535)
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
+wait(0)
         game:GetService('VirtualUser'):CaptureController()
 game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
+wait(0)
                                     end
                                 end
                             end
@@ -4818,7 +4820,9 @@ game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then 
+wait(0)
                                         Boost()
+wait(0)
                                         break
                                      end
                                  end
@@ -4839,7 +4843,9 @@ game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 55 then
+wait(0)
                                         Attack()
+wait(0)
                                         break
                                      end
                                  end
