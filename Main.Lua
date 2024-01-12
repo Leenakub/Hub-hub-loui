@@ -18,12 +18,8 @@ local games = {
 
             return tostring(
 
-              " "
-
+              " \n"
                    ..
-
-
-
                         Gamename.. "!" .. " เกไม ]"  .."\n Loadded..."
 
             )
@@ -83,7 +79,7 @@ wait(0.6)
 
 
 wait(0.2)
-Notification.new("<Color=Yellow>เปิดโปร<Color=/>"):Display()
+Notification.new("\n<Color=Yellow>เวอร์ชัน<Color=Green>1.0<Color=/><Color=/>\n"):Display()
 
 wait()
 
@@ -1477,8 +1473,7 @@ end
 
 				end)
 
-			end
-
+      end
 
 
 			DropScroll.CanvasSize = UDim2.new(0,0,0,UIListLayout.AbsoluteContentSize.Y + 10)
@@ -1879,13 +1874,7 @@ function main:Slider(text, min, max, set, callback)
 
 
 
-    local Value = set
-
-
-
-    local moveconnection
-
-    local releaseconnection
+    local Value = nil
 
 
 
@@ -3669,11 +3658,12 @@ end
 
         if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
 
-        pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/210, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
+        pcall(function() 
+      tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/320, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
 
         tween:Play()
 
-        if Distance <= 250 then
+        if Distance <= 385 then
 
             tween:Cancel()
 
@@ -3707,48 +3697,35 @@ end
 
     if Distance < 350 then
 
-        Speed = 480
+        Speed = 439
 
     elseif Distance < 1100 then
 
-        Speed = 335
+        Speed = 385
 
     elseif Distance < 350 then
 
-        Speed = 480
+        Speed = 439
 
     elseif Distance >= 950 then
 
-        Speed = 335
+        Speed = 385
 
     end
 
     game:GetService("TweenService"):Create(
-
-        game.Players.LocalPlayer.Character.HumanoidRootPart,
-
+game.Players.LocalPlayer.Character.HumanoidRootPart,
         TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-
         {CFrame = Pos}
-
     ):Play()
-
 end
 
-    
-
     function TP(Pos)
-
         Distance = (Pos.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-
         if Distance < 250 then
-
-            Speed = 480
-
+            Speed = 450
         elseif Distance >= 1000 then
-
-            Speed = 335
-
+            Speed = 385
         end
 
         game:GetService("TweenService"):Create(
@@ -4842,6 +4819,8 @@ wait(0.00535*0.000000000000000)
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then 
                                         Boost()
+                  wait(0)
+                  game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
                                         break
                                      end
                                  end
@@ -4864,7 +4843,7 @@ wait(0.00535*0.000000000000000)
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
                                         Attack()
                                         wait(0)
-                                        Attack()
+                  game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
                                         wait(0)
                                         break
                                      end
@@ -6354,11 +6333,11 @@ end
 
                                 wait(1.8)
 
-                                if game:GetService("Workspace").Enemies:FindFirstChild("rip_indra [Lv. 1500] [Boss]") then
+                                if game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") then
 
                                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 
-                                        if v.Name == "rip_indra [Lv. 1500] [Boss]" then
+                                        if v.Name == "rip_indra" then
 
                                             OldCFrameThird = v.HumanoidRootPart.CFrame
 
@@ -6392,7 +6371,7 @@ end
 
                                     end
 
-                                elseif not game:GetService("Workspace").Enemies:FindFirstChild("rip_indra [Lv. 1500] [Boss]") and (CFrame.new(-26880.93359375, 22.848554611206, 473.18951416016).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1000 then
+                                elseif not game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") and (CFrame.new(-26880.93359375, 22.848554611206, 473.18951416016).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1000 then
 
                                     topos(CFrame.new(-26880.93359375, 22.848554611206, 473.18951416016))
 
