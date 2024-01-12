@@ -4585,7 +4585,6 @@ spawn(function()
                 pcall(function()
                     Fastx.activeController.timeToNextAttack = 0.0000000000000000000000000000000000000000000000000001
                     Fastx.activeController.hitboxMagnitude = 60
-                
                     Fastx.activeController.active = false
                     Fastx.activeController.timeToNextBlock = 0.0000000000000000000000000000000000000000000000000001
                     Fastx.activeController.focusStart = 0
@@ -4697,21 +4696,21 @@ wait(0)
 
 ac.humanoid:LoadAnimation(Animation):Play(1, 9)
                             game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(60), 2, "")
-wait(0.00535*0.000000000000000)
+wait(0.00535)
 game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-wait(0.00535*0.0000000000000002)
+wait(0.00535)
 game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(60), 2, "")
-wait(0.00535*0.000000000000000)
+wait(0.00535)
 game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-wait(0.00535*0.000000000000000)
+wait(0.00535)
 game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(60), 2, "")
-wait(0.00535*0.0000000000000002)
+wait(0.00535)
 game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-wait(0.00535*0.000000000000000)
+wait(0.00535)
 game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(60), 2, "")
-wait(0.00535*0.0000000000000002)
+wait(0.00535)
 game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-wait(0.00535*0.000000000000000)
+wait(0.00535)
                         end
                     end)
                 end
@@ -4724,9 +4723,10 @@ wait(0.00535*0.000000000000000)
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
-
+                                for indexincrement = 1280, 840 do
                   game:GetService('VirtualUser'):CaptureController()
-                  game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
+                  game:GetService('VirtualUser'):Button1Down(Vector2.new(indexincrement))
+end
                                     end
                                 end
                             end
@@ -4747,7 +4747,7 @@ wait(0.00535*0.000000000000000)
                         shared.cpc = b.play
                     end
                   spawn(function()           
-                     while wait(0.06) do
+                     while wait(0) do
                          pcall(function()
                                 c.wrapAttackAnimationAsync = function(d, e, f, g, h)
                                     local i = c.getBladeHits(e, f, g)
@@ -4757,7 +4757,7 @@ wait(0.00535*0.000000000000000)
                                         d:Play(1.25, 1.25, 1.25)
                                         h(i)
                                         b.play = shared.cpc
-                wait(0.052*0.0000000000055)
+                                        wait(0.25)
                                         d:Stop()
                 end
               end
@@ -4779,7 +4779,7 @@ wait(0.00535*0.000000000000000)
                             shared.cpc = STOP.play 
                         end
                     spawn(function()           
-                     while wait(0.006) do
+                     while wait(0) do
                          pcall(function()
                             STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
                                 local Hits = STOPRL.getBladeHits(b,c,d)
@@ -4789,12 +4789,12 @@ wait(0.00535*0.000000000000000)
                                         a:Play(2.1,1.1,1.1)
                                         func(Hits)
                                         STOP.play = shared.cpc
-                                        wait(a.length * 0.00053)
+                                        wait(a.length * 0)
                                         a:Stop()
                                     else
                                         func(Hits)
                                         STOP.play = shared.cpc
-                                        wait(a.length * 0.00053)
+                                        wait(a.length * 0)
                                         a:Stop()
                                     end
                                 end
@@ -4811,7 +4811,7 @@ wait(0.00535*0.000000000000000)
             spawn(function()
                 while wait() do
                     if _G.FastAttackNormalSpeed then
-                        if b - tick() > 15 then
+                        if b - tick() > 0.05 then
                             b = tick()
                         end
                         pcall(function()
@@ -4819,8 +4819,6 @@ wait(0.00535*0.000000000000000)
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then 
                                         Boost()
-                  wait(0)
-                  game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
                                         break
                                      end
                                  end
@@ -4834,17 +4832,14 @@ wait(0.00535*0.000000000000000)
             spawn(function()
                 while wait() do
                     if  _G.FastAttackNormalSpeed then
-                        if k - tick() > 20 then
+                        if k - tick() > 0.05 then
                             k = tick()
                         end
                         pcall(function()
                             for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Humanoid.Health > 0 then
-                                    if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
+                                    if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 55 then
                                         Attack()
-                                        wait(0)
-                  game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-                                        wait(0)
                                         break
                                      end
                                  end
@@ -4864,8 +4859,8 @@ wait(0.00535*0.000000000000000)
                     if not shared.cpc then
                         shared.cpc = b.play
                     end
-            spawn(function()           
-               while wait(0.006) do
+            task.spawn(function()           
+               while wait(0) do
                    pcall(function()
             if _G.FastAttackNormalSpeed then
                                 c.wrapAttackAnimationAsync = function(d, e, f, g, h)
@@ -4876,7 +4871,7 @@ wait(0.00535*0.000000000000000)
                                         d:Play(1.01, 1.2, 1)
                                         h(i)
                                         b.play = shared.cpc
-                                        wait(0.00000000000000000000000000000009)
+                                        wait(0)
                                         d:Stop()
                                     end
                                 end
@@ -4897,22 +4892,22 @@ wait(0.00535*0.000000000000000)
                             shared.cpc = STOP.play 
                         end
                 spawn(function()           
-                     while wait(0.06) do
+                     while wait(0) do
                          pcall(function()
                             STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
                                 local Hits = STOPRL.getBladeHits(b,c,d)
                                 if Hits then
                                     if  _G.FastAttackNormalSpeed then
                                         STOP.play = function() end
-                                        a:Play(100,50,100)
+                                        a:Play(1,5,1)
                                         func(Hits)
                                         STOP.play = shared.cpc
-                                        wait(a.length * 0.00535)
+                                        wait(a.length * 0)
                                         a:Stop()
                                     else
                                         func(Hits)
                                         STOP.play = shared.cpc
-                                        wait(a.length * 0.00535)
+                                        wait(a.length * 0)
                                         a:Stop()
                                     end
                                 end
