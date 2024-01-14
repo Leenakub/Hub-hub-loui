@@ -3955,7 +3955,7 @@ end)
 
 
 
-    local SelectWeapona = Main3:Dropdown("เลือกของ",{"Combat","Sword"},WeaponList,function(value)
+    local SelectWeapona = Main3:Dropdown("เลือกของ",WeaponList,function(value)
 
         _G.SelectWeapon = value
 
@@ -4251,6 +4251,8 @@ local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPl
             local Client = game:GetService("Players").LocalPlayer
             local DMG = require(Client.PlayerScripts.CombatFramework.Particle.Damage)
 
+DMG.play = function() end
+
 FastAttackx = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
 
 Fastx = debug.getupvalues(FastAttackx)[2]
@@ -4302,9 +4304,13 @@ end)
           v:Play(1,1,1)
         end                 
         if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and ac.blades and ac.blades[1] then 
+          wait(0)
           game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(Weapon()))
+          wait(0)
           game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
+          wait(0)
           game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, 2, "") 
+          wait(0)
         end
       end
     end
@@ -4340,15 +4346,6 @@ end
                 return Hits
             end
 
-            function Boost()
-                pcall(function()
-game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-wait(0.0044)
-game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, 2, "")
-wait(0.0225)
-                end)
-            end
-
             local cdnormal = 9e9
             local Animation = Instance.new("Animation")
             local CooldownFastAttack = 0
@@ -4366,9 +4363,6 @@ wait(0.0225)
 
 ac.humanoid:LoadAnimation(Animation):Play(1, 1)
                             game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", getHits(60), 2, "")
-wait(0.0025)
-game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(NumberAc12 / 1099511627776 * 16777215), AcAttack10)
-wait(0.0444)
                         end
                     end)
                 end
@@ -4382,11 +4376,9 @@ wait(0.0444)
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
 
-game:GetService('VirtualUser'):CaptureController()
-game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
-wait(0)
-game:GetService('VirtualUser'):CaptureController()
-game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
+                  game:GetService('VirtualUser'):CaptureController()
+                  game:GetService('VirtualUser'):Button1Down(Vector2.new(1280, 672))
+
                                     end
                                 end
                             end
@@ -4394,28 +4386,6 @@ game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
                     end
                 end
             end)
-
-            b = tick()
-            spawn(function()
-                while wait() do
-                    if _G.FastAyttackNormalSpeed then
-                        if b - tick() > 9e9 then
-                            b = tick()
-                        end
-                        pcall(function()
-                            for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                if v.Humanoid.Health > 0 then
-                                    if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then 
-                                        Boost()
-                                        wait(0.00000000000042982545632222)
-                                        break
-                                     end
-                                 end
-                             end
-                         end)
-                     end
-                 end
-             end)
 
             k = tick()
             spawn(function()
@@ -4429,8 +4399,6 @@ game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
                                 if v.Humanoid.Health > 0 then
                                     if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
                                         Attack()
-                                        wait(0.00000000000042982545632222)
-                                        break
                                      end
                                  end
                              end
@@ -4439,10 +4407,51 @@ game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
                  end
              end)
 
+
+b = tick()
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            if b - tick() > 0.05 then
+                b = tick()
+            end
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then 
+                         Boost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+k = tick()
+spawn(function()
+    while wait() do
+        if  _G.FastAttackNormalSpeed then
+            if k - tick() > 0.05 then
+                k = tick()
+            end
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 60 then
+                        Unboost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+local a = game.Players.LocalPlayer
+local b = require(a.PlayerScripts.CombatFramework.Particle)
+local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
             task.spawn(function()
-                    local a = game.Players.LocalPlayer
-                    local b = require(a.PlayerScripts.CombatFramework.Particle)
-                    local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
                     if not shared.orl then
                         shared.orl = c.wrapAttackAnimationAsync
                     end
@@ -4482,7 +4491,7 @@ game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
                             shared.cpc = STOP.play 
                         end
                 spawn(function()           
-                     while wait(0.04556588244478625767686524246757727582827255724285828585857272858585828682558585858585858585858585888509050585888585857589898282424345868582705824364624) do
+                     while wait(0) do
                          pcall(function()
                             STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
                                 local Hits = STOPRL.getBladeHits(b,c,d)
@@ -4508,6 +4517,898 @@ game:GetService('VirtualUser'):Button2Down(Vector2.new(1280, 672))
          end)
      end)
   end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+                                      
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
+
+            task.spawn(function()
+                    if not shared.orl then
+                        shared.orl = c.wrapAttackAnimationAsync
+                    end
+                    if not shared.cpc then
+                        shared.cpc = b.play
+                    end
+            spawn(function()           
+               while wait(0) do
+                   pcall(function()
+            if _G.FastAttackNormalSpeed then
+                                c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                    local i = c.getBladeHits(e, f, g)
+                                    if i then
+                                        b.play = function()
+                                        end
+                                        d:Play(1, 1, 1)
+                                        h(i)
+                                        b.play = shared.cpc
+                                        wait()
+                                        d:Stop()
+                                    end
+                                end
+                               end
+                            end)
+                         end
+                     end)
+
+            local Client = game.Players.LocalPlayer
+            local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+            local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+            task.spawn(function()
+                pcall(function()
+                    if not shared.orl then
+                        shared.orl = STOPRL.wrapAttackAnimationAsync
+                    end
+                        if not shared.cpc then
+                            shared.cpc = STOP.play 
+                        end
+                spawn(function()           
+                     while wait(0) do
+                         pcall(function()
+                            STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                                local Hits = STOPRL.getBladeHits(b,c,d)
+                                if Hits then
+                                    if  _G.FastAttackNormalSpeed then
+                                        STOP.play = function() end
+                                        a:Play(1,1,1)
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    else
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+             end)
+         end)
+     end)
+  end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
+
+            task.spawn(function()
+                    if not shared.orl then
+                        shared.orl = c.wrapAttackAnimationAsync
+                    end
+                    if not shared.cpc then
+                        shared.cpc = b.play
+                    end
+            spawn(function()           
+               while wait(0) do
+                   pcall(function()
+            if _G.FastAttackNormalSpeed then
+                                c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                    local i = c.getBladeHits(e, f, g)
+                                    if i then
+                                        b.play = function()
+                                        end
+                                        d:Play(1, 1, 1)
+                                        h(i)
+                                        b.play = shared.cpc
+                                        wait()
+                                        d:Stop()
+                                    end
+                                end
+                               end
+                            end)
+                         end
+                     end)
+
+            local Client = game.Players.LocalPlayer
+            local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+            local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+            task.spawn(function()
+                pcall(function()
+                    if not shared.orl then
+                        shared.orl = STOPRL.wrapAttackAnimationAsync
+                    end
+                        if not shared.cpc then
+                            shared.cpc = STOP.play 
+                        end
+                spawn(function()           
+                     while wait(0) do
+                         pcall(function()
+                            STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                                local Hits = STOPRL.getBladeHits(b,c,d)
+                                if Hits then
+                                    if  _G.FastAttackNormalSpeed then
+                                        STOP.play = function() end
+                                        a:Play(1,1,1)
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    else
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+             end)
+         end)
+     end)
+  end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
+
+            task.spawn(function()
+                    if not shared.orl then
+                        shared.orl = c.wrapAttackAnimationAsync
+                    end
+                    if not shared.cpc then
+                        shared.cpc = b.play
+                    end
+            spawn(function()           
+               while wait(0) do
+                   pcall(function()
+            if _G.FastAttackNormalSpeed then
+                                c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                    local i = c.getBladeHits(e, f, g)
+                                    if i then
+                                        b.play = function()
+                                        end
+                                        d:Play(1, 1, 1)
+                                        h(i)
+                                        b.play = shared.cpc
+                                        wait()
+                                        d:Stop()
+                                    end
+                                end
+                               end
+                            end)
+                         end
+                     end)
+
+            local Client = game.Players.LocalPlayer
+            local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+            local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+            task.spawn(function()
+                pcall(function()
+                    if not shared.orl then
+                        shared.orl = STOPRL.wrapAttackAnimationAsync
+                    end
+                        if not shared.cpc then
+                            shared.cpc = STOP.play 
+                        end
+                spawn(function()           
+                     while wait(0) do
+                         pcall(function()
+                            STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                                local Hits = STOPRL.getBladeHits(b,c,d)
+                                if Hits then
+                                    if  _G.FastAttackNormalSpeed then
+                                        STOP.play = function() end
+                                        a:Play(1,1,1)
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    else
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+             end)
+         end)
+     end)
+  end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
+
+            task.spawn(function()
+                    if not shared.orl then
+                        shared.orl = c.wrapAttackAnimationAsync
+                    end
+                    if not shared.cpc then
+                        shared.cpc = b.play
+                    end
+            spawn(function()           
+               while wait(0) do
+                   pcall(function()
+            if _G.FastAttackNormalSpeed then
+                                c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                    local i = c.getBladeHits(e, f, g)
+                                    if i then
+                                        b.play = function()
+                                        end
+                                        d:Play(1, 1, 1)
+                                        h(i)
+                                        b.play = shared.cpc
+                                        wait()
+                                        d:Stop()
+                                    end
+                                end
+                               end
+                            end)
+                         end
+                     end)
+
+            local Client = game.Players.LocalPlayer
+            local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+            local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+            task.spawn(function()
+                pcall(function()
+                    if not shared.orl then
+                        shared.orl = STOPRL.wrapAttackAnimationAsync
+                    end
+                        if not shared.cpc then
+                            shared.cpc = STOP.play 
+                        end
+                spawn(function()           
+                     while wait(0) do
+                         pcall(function()
+                            STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                                local Hits = STOPRL.getBladeHits(b,c,d)
+                                if Hits then
+                                    if  _G.FastAttackNormalSpeed then
+                                        STOP.play = function() end
+                                        a:Play(1,1,1)
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    else
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+             end)
+         end)
+     end)
+  end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
+
+            task.spawn(function()
+                    if not shared.orl then
+                        shared.orl = c.wrapAttackAnimationAsync
+                    end
+                    if not shared.cpc then
+                        shared.cpc = b.play
+                    end
+            spawn(function()           
+               while wait(0) do
+                   pcall(function()
+            if _G.FastAttackNormalSpeed then
+                                c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                    local i = c.getBladeHits(e, f, g)
+                                    if i then
+                                        b.play = function()
+                                        end
+                                        d:Play(1, 1, 1)
+                                        h(i)
+                                        b.play = shared.cpc
+                                        wait()
+                                        d:Stop()
+                                    end
+                                end
+                               end
+                            end)
+                         end
+                     end)
+
+            local Client = game.Players.LocalPlayer
+            local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+            local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+            task.spawn(function()
+                pcall(function()
+                    if not shared.orl then
+                        shared.orl = STOPRL.wrapAttackAnimationAsync
+                    end
+                        if not shared.cpc then
+                            shared.cpc = STOP.play 
+                        end
+                spawn(function()           
+                     while wait(0) do
+                         pcall(function()
+                            STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                                local Hits = STOPRL.getBladeHits(b,c,d)
+                                if Hits then
+                                    if  _G.FastAttackNormalSpeed then
+                                        STOP.play = function() end
+                                        a:Play(1,1,1)
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    else
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+             end)
+         end)
+     end)
+  end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
+
+            task.spawn(function()
+                    if not shared.orl then
+                        shared.orl = c.wrapAttackAnimationAsync
+                    end
+                    if not shared.cpc then
+                        shared.cpc = b.play
+                    end
+            spawn(function()           
+               while wait(0) do
+                   pcall(function()
+            if _G.FastAttackNormalSpeed then
+                                c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                    local i = c.getBladeHits(e, f, g)
+                                    if i then
+                                        b.play = function()
+                                        end
+                                        d:Play(1, 1, 1)
+                                        h(i)
+                                        b.play = shared.cpc
+                                        wait()
+                                        d:Stop()
+                                    end
+                                end
+                               end
+                            end)
+                         end
+                     end)
+
+            local Client = game.Players.LocalPlayer
+            local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+            local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+            task.spawn(function()
+                pcall(function()
+                    if not shared.orl then
+                        shared.orl = STOPRL.wrapAttackAnimationAsync
+                    end
+                        if not shared.cpc then
+                            shared.cpc = STOP.play 
+                        end
+                spawn(function()           
+                     while wait(0) do
+                         pcall(function()
+                            STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                                local Hits = STOPRL.getBladeHits(b,c,d)
+                                if Hits then
+                                    if  _G.FastAttackNormalSpeed then
+                                        STOP.play = function() end
+                                        a:Play(1,1,1)
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    else
+                                        func(Hits)
+                                        STOP.play = shared.cpc
+                                        wait(a.length * 0)
+                                        a:Stop()
+                                    end
+                                end
+                            end
+                        end)
+                    end
+             end)
+         end)
+     end)
+  end)
+
+          task.spawn(function()
+                  local a = game.Players.LocalPlayer
+                  local b = require(a.PlayerScripts.CombatFramework.Particle)
+                  local c = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+                  if not shared.orl then
+                      shared.orl = c.wrapAttackAnimationAsync
+                  end
+                  if not shared.cpc then
+                      shared.cpc = b.play
+                  end
+          spawn(function()           
+             while wait(0) do
+                 pcall(function()
+          if _G.FastAttackNormalSpeed then
+                              c.wrapAttackAnimationAsync = function(d, e, f, g, h)
+                                  local i = c.getBladeHits(e, f, g)
+                                  if i then
+                                      b.play = function()
+                                      end
+                                      d:Play(1, 1, 1)
+                                      h(i)
+                                      b.play = shared.cpc
+                                      wait()
+                                      d:Stop()
+                                  end
+                              end
+                             end
+                          end)
+                       end
+                   end)
+
+          local Particle = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle)
+          local RigLib = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+          task.spawn(function()
+              pcall(function()
+                  if not shared.orl then
+                      shared.orl = RigLib.wrapAttackAnimationAsync
+                  end
+                      if not shared.cpc then
+                          shared.cpc = Particle.play 
+                      end
+              spawn(function()           
+                   while wait(0) do
+                       pcall(function()
+                      RigLib.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                              local Hits = RigLib.getBladeHits(b,c,d)
+                              if Hits then
+                                  if  _G.FastAttackNormalSpeed then
+
+                            Particle.play = function() end
+                                      a:Play(1,1,1)
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  else
+                                      func(Hits)
+                            shared.cpc = Particle.play
+                                      wait(a.length * 0)
+                                      a:Stop()
+                                  end
+                              end
+                          end
+                      end)
+                  end
+           end)
+       end)
+   end)
+end)
 
 
  Main3:Seperator("Boss")
