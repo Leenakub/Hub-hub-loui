@@ -358,3 +358,528 @@ game:GetService("RunService").Stepped:Connect(function()
    end)
 end
 
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Attack()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                         
+                         Boost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+    while wait() do
+        if  _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Unboost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  
+                                  Attack()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+
+
+          spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                                   
+                                   Boost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+          spawn(function()
+              while wait() do
+                  if  _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  Unboost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Attack()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                         
+                         Boost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+    while wait() do
+        if  _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Unboost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  
+                                  Attack()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+
+
+          spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                                   
+                                   Boost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+          spawn(function()
+              while wait() do
+                  if  _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  Unboost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Attack()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                         
+                         Boost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+    while wait() do
+        if  _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Unboost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  
+                                  Attack()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+
+
+          spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                                   
+                                   Boost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+          spawn(function()
+              while wait() do
+                  if  _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  Unboost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Attack()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                         
+                         Boost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+    while wait() do
+        if  _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Unboost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  
+                                  Attack()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+
+
+          spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                                   
+                                   Boost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+          spawn(function()
+              while wait() do
+                  if  _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  Unboost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Attack()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+
+
+spawn(function()
+    while wait() do
+        if _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                         
+                         Boost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+    while wait() do
+        if  _G.FastAttackNormalSpeed then
+            pcall(function()
+                for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                    if v.Humanoid.Health > 0 then
+                        if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                        
+                        Unboost()
+                         end
+                     end
+                 end
+             end)
+         end
+     end
+ end)
+
+spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  
+                                  Attack()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+
+
+          spawn(function()
+              while wait() do
+                  if _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then 
+                                   
+                                   Boost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
+          spawn(function()
+              while wait() do
+                  if  _G.FastAttackNormalSpeed then
+                      pcall(function()
+                          for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
+                              if v.Humanoid.Health > 0 then
+                                  if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= Size then
+                                  Unboost()
+                                   end
+                               end
+                           end
+                       end)
+                   end
+               end
+           end)
+
