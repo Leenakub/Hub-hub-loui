@@ -3360,7 +3360,7 @@ end
 
 spawn(function()
     pcall(function()
-        while wait(0.1252) do
+        while wait(.5) do
             if InfiniteEnergy then
                 originalstam = LocalPlayer.Character.Energy.Value
                 infinitestam()
@@ -3379,8 +3379,8 @@ function NoDodgeCool()
 
             if dodge and typeof(func) == "function" and getfenv(func).script == dodge then
                 for _, value in ipairs(getupvalues(func)) do
-                    if tostring(value) == "0.1" then
-                        repeat wait(0.1)
+                    if tostring(value) == ".001" then
+                        repeat wait(.005)
                             setupvalue(func, _, 0)
                         until not nododgecool
                     end
@@ -3493,7 +3493,7 @@ end
 
     if Distance < 350 then
 
-        Speed = 439
+        Speed = 420
 
     elseif Distance < 1100 then
 
@@ -3501,7 +3501,7 @@ end
 
     elseif Distance < 350 then
 
-        Speed = 439
+        Speed = 420
 
     elseif Distance >= 950 then
 
@@ -3560,7 +3560,7 @@ end
 
                         Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 
-                        Noclip.MaxForce = Vector3.new(100000,100000,100000)
+                        Noclip.MaxForce = Vector3.new(1,0,1)
 
                         Noclip.Velocity = Vector3.new(0,0,0)
 
@@ -13716,102 +13716,50 @@ end
 --FN
 
 spawn(function()
-
     while wait() do
-
-      pcall(function()
-
-        if sethiddenproperty then
-
-            sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",100)
-
-        end
-
-        if setscriptable then
-
-            setscriptable(game.Players.LocalPlayer, "SimulationRadius", true)
-
-            game.Players.LocalPlayer.SimulationRadius = math.huge * math.huge, math.huge * math.huge * 0 / 0 * 0 / 0 * 0 / 0 * 0 / 0 * 0 / 0
-
-          end
-
+        pcall(function()
+            if sethiddenproperty then
+                sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 100)
+            end
+            if setscriptable then
+                setscriptable(game.Players.LocalPlayer, "SimulationRadius", true)
+                game.Players.LocalPlayer.SimulationRadius = math.huge * math.huge, math.huge * math.huge * 0 / 0 * 0 / 0 * 0 / 0 * 0 / 0 * 0 / 0
+            end
         end)
-
     end
-
 end)
 
-
-
-Settings:Toggle("Bring Mob",true,function(Bring)
-
+Settings:Toggle("Bring Mob", true, function(Bring)
     _G.BringMonster = Bring
+end)
 
-    end)
-
-
-
-    spawn(function()
-
-        while task.wait() do
-
-            pcall(function()
-
-                if _G.BringMonster then
-
-                    CheckQuest()
-
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-
-                        if _G.AutoFarm and StartMagnet and v.Name == Mon and (Mon == "Factory Staff" or Mon == "Monkey" or Mon == "Dragon Crew Warrior" or Mon == "Dragon Crew Archer") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
-
+spawn(function()
+    while task.wait() do
+        pcall(function()
+            if _G.BringMonster then
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if _G.AutoFarm and StartMagnet and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+                        local distance = (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                        if distance <= 250 then
                             v.HumanoidRootPart.CFrame = PosMon
-
                             v.Humanoid:ChangeState(11)
-
                             v.HumanoidRootPart.CanCollide = false
-
-                            v.Head.CanCollide = false
-
+                            v.Humanoid.WalkSpeed = 0
+                            v.Humanoid.JumpPower = 0
+                            game.Players.LocalPlayer.Character:SetStateEnabled(Enum.HumanoidStateType.Jumping, false)
+                            game.Players.LocalPlayer.Character:SetStateEnabled(Enum.HumanoidStateType.Freefall, false)
                             if v.Humanoid:FindFirstChild("Animator") then
-
                                 v.Humanoid.Animator:Destroy()
-
                             end
-
-                            sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-
-                        elseif _G.AutoFarm and StartMagnet and v.Name == Mon and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 250 then
-
-
-
-                            v.HumanoidRootPart.CFrame = PosMon
-
-                            v.Humanoid:ChangeState(11)
-
-                            v.HumanoidRootPart.CanCollide = false
-
-                            v.Head.CanCollide = false
-
-                            if v.Humanoid:FindFirstChild("Animator") then
-
-                                v.Humanoid.Animator:Destroy()
-
-                            end
-
-                            sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
-
+                            sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
                         end
-
                     end
-
                 end
+            end
+        end)
+    end
+end)
 
-            end)
-
-        end
-
-    end)
 
 
 
