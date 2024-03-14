@@ -4353,7 +4353,7 @@ end
                             end
                         end)
                     end
-                end)
+                end
             end)
 
             k = tick()
@@ -4375,7 +4375,7 @@ end
                             end
                         end)
                     end
-                end)
+                end
             end)
 
 c = tick()
@@ -4435,7 +4435,7 @@ end)
 
 
 
-          
+
 
             local Client = game.Players.LocalPlayer
             local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
@@ -7496,7 +7496,7 @@ game:GetService('VirtualUser'):SetKeyUp('0x65')
                             if game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate") then
                                 if game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
                                     repeat task.wait()
-                        
+
 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Enemies:FindFirstChild("Lava Pirate").HumanoidRootPart.CFrame * CFrame.new(3,50,0)
 
                                     until _G.AutoObservation == false or not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel")
@@ -13346,7 +13346,6 @@ wait(0)
 
 
 --
-
 
 
 
